@@ -1,44 +1,34 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React, { useEffect } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import Config from './src/config'; // Direct import from Main Env
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+const App = () => {
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
-  );
-}
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
+  useEffect(() => {
+    // Console mein wahi URL aayega jo tumne main file mein select kiya hai
+    console.log(`Current API: ${Config.API_URL}`); 
+  }, []);
 
   return (
     <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
+
+      <Text style={{ color: Config.THEME_COLOR, fontSize: 20, fontWeight: 'bold' }}>
+        Current Environment: {Config.ENV}
+      </Text>
+      <Text>API: {Config.API_URL}</Text>
+      
+      {Config.DEBUG_MODE && (
+        <Text style={{color: 'red'}}>DEBUG MODE ON</Text>
+      )}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
