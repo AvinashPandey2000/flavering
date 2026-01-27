@@ -63,13 +63,14 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 10,
         color: '#333',
-        display: 'none' // Hidden in design but good for utility
+        display: 'none' 
     },
     option: {
         paddingVertical: 12,
     },
     optionText: {
         fontSize: 16,
+        fontWeight:'500',
         color: '#333',
     },
     logoutText: {

@@ -1,10 +1,124 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TextInput,
+    ScrollView,
+    TouchableOpacity,
+    Image,
+    FlatList,
+} from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+const FilterChip = ({ label, icon, active }) => (
+    <TouchableOpacity style={[
+        styles.filterChip,
+        active && styles.filterChipActive
+    ]}>
+        {icon && <View style={styles.filterIconContainer}><Text style={styles.filterIcon}>{icon}</Text></View>}
+        <Text style={[
+            styles.filterText,
+            active && styles.filterTextActive
+        ]}>{label}</Text>
+    </TouchableOpacity>
+);
+
+const ProviderCard = () => (
+    <View style={styles.providerCard}>
+        <View style={styles.providerImagePlaceholder}>
+            {/* Placeholder for image, using text for now if no image provided */}
+            <Text style={{ fontSize: 30 }}>🏥</Text>
+        </View>
+        <View style={styles.providerInfo}>
+            <View style={styles.providerHeader}>
+                <Text style={styles.providerName}>Veterinary Medical Center</Text>
+                <TouchableOpacity>
+                    <Text style={styles.heartIcon}>❤️</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.tagContainer}>
+                <Text style={styles.tagText}>Hospital</Text>
+            </View>
+            <View style={styles.addressRow}>
+                <Text style={styles.locationIcon}>📍</Text>
+                <Text style={styles.addressText} numberOfLines={1}>
+                    2765 Del Paso Rd 120, Sacramento...
+                </Text>
+                <TouchableOpacity style={styles.callButton}>
+                    <Text style={styles.callIcon}>📞</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
+    </View>
+);
 
 const FindScreen = () => {
+    const insets = useSafeAreaInsets();
+
+    const filters = [
+        { id: 1, label: 'All', icon: '🏥', active: true },
+        { id: 2, label: 'Hospital', icon: '🩺', active: false },
+        { id: 3, label: 'Groomer', icon: '✂️', active: false },
+        { id: 4, label: 'Boarding', icon: '🏠', active: false },
+    ];
+
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Find Screen</Text>
+            {/* Header Section */}
+            <View style={[styles.header, { paddingTop: insets.top + 10 }]}>
+                <View style={styles.headerTop}>
+                    <Text style={styles.headerTitle}>Your Favourite Providers</Text>
+                    <TouchableOpacity style={styles.menuButton}>
+                        <View style={styles.menuIconLines}>
+                            <View style={styles.menuLine} />
+                            <View style={[styles.menuLine, { width: 12 }]} />
+                            <View style={styles.menuLine} />
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={styles.searchContainer}>
+                    <Text style={styles.searchIcon}>🔍</Text>
+                    <TextInput
+                        style={styles.searchInput}
+                        placeholder="Search vets, groomers, boarders..."
+                        placeholderTextColor="#999"
+                    />
+                </View>
+            </View>
+
+            <ScrollView
+                style={styles.content}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={false}
+            >
+                {/* Horizontal Filters */}
+                <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={styles.filtersContainer}
+                >
+                    {filters.map(filter => (
+                        <FilterChip
+                            key={filter.id}
+                            label={filter.label}
+                            icon={filter.id === 1 ? '🏥' : filter.icon}
+                            active={filter.active}
+                        />
+                    ))}
+                </ScrollView>
+
+                <Text style={styles.resultCount}>1 provider near you</Text>
+
+                <ProviderCard />
+            </ScrollView>
+
+            {/* Floating Action Button */}
+            <TouchableOpacity style={styles.fab}>
+                <Text style={styles.fabIcon}>+</Text>
+                <Text style={styles.fabText}>Provider</Text>
+            </TouchableOpacity>
         </View>
     );
 };
@@ -12,13 +126,213 @@ const FindScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#f7f8f7', // Matches Home implementation
+    },
+    header: {
+        backgroundColor: '#00796b',
+        paddingHorizontal: 20,
+        paddingBottom: 24,
+        borderBottomLeftRadius: 32,
+        borderBottomRightRadius: 32,
+    },
+    headerTop: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    headerTitle: {
+        fontSize: 24,
+        fontWeight: '700',
+        color: '#fff',
+    },
+    menuButton: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: 'rgba(255,255,255,0.2)',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff',
     },
-    text: {
-        fontSize: 20,
-        fontWeight: 'bold',
+    menuIconLines: {
+        gap: 4,
+        alignItems: 'flex-end',
+    },
+    menuLine: {
+        width: 18,
+        height: 2,
+        backgroundColor: '#fff',
+        borderRadius: 2,
+    },
+    searchContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+        borderRadius: 16,
+        paddingHorizontal: 16,
+        height: 50,
+    },
+    searchIcon: {
+        fontSize: 18,
+        marginRight: 10,
+        opacity: 0.6,
+    },
+    searchInput: {
+        flex: 1,
+        fontSize: 15,
+        color: '#333',
+        height: '100%',
+    },
+    content: {
+        flex: 1,
+    },
+    scrollContent: {
+        paddingBottom: 100, // Space for FAB
+    },
+    filtersContainer: {
+        paddingHorizontal: 20,
+        paddingVertical: 20,
+        gap: 12,
+    },
+    filterChip: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+        paddingHorizontal: 16,
+        paddingVertical: 10,
+        borderRadius: 25,
+        gap: 8,
+    },
+    filterChipActive: {
+        backgroundColor: '#00796b',
+    },
+    filterIconContainer: {
+        width: 20,
+        alignItems: 'center',
+    },
+    filterIcon: {
+        fontSize: 16,
+    },
+    filterText: {
+        fontSize: 14,
+        fontWeight: '500',
+        color: '#444',
+    },
+    filterTextActive: {
+        color: '#fff',
+        fontWeight: '600',
+    },
+    resultCount: {
+        paddingHorizontal: 20,
+        fontSize: 14,
+        color: '#888',
+        marginBottom: 16,
+    },
+    providerCard: {
+        marginHorizontal: 20,
+        backgroundColor: '#fff',
+        borderRadius: 24,
+        padding: 16,
+        flexDirection: 'row',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.05,
+        shadowRadius: 8,
+        elevation: 3,
+    },
+    providerImagePlaceholder: {
+        width: 80,
+        height: 80,
+        backgroundColor: '#f0f0e0', // Beige tone
+        borderRadius: 16,
+        marginRight: 16,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    providerInfo: {
+        flex: 1,
+    },
+    providerHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+    },
+    providerName: {
+        fontSize: 15,
+        fontWeight: '700',
+        color: '#2b2b2b',
+        flex: 1,
+        marginRight: 8,
+    },
+    heartIcon: {
+        fontSize: 18,
+        color: '#ff4d4f',
+    },
+    tagContainer: {
+        alignSelf: 'flex-start',
+        backgroundColor: '#e6fbf5',
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        borderRadius: 8,
+        marginVertical: 6,
+    },
+    tagText: {
+        color: '#00796b',
+        fontSize: 11,
+        fontWeight: '600',
+    },
+    addressRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    locationIcon: {
+        fontSize: 14,
+        marginRight: 4,
+    },
+    addressText: {
+        flex: 1,
+        fontSize: 12,
+        color: '#888',
+        marginRight: 8,
+    },
+    callButton: {
+        backgroundColor: '#e9f7f4',
+        width: 32,
+        height: 32,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    callIcon: {
+        fontSize: 14,
+    },
+    fab: {
+        position: 'absolute',
+        bottom: 30,
+        right: 20,
+        backgroundColor: '#00796b',
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+        paddingVertical: 14,
+        borderRadius: 18,
+        shadowColor: '#00796b',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        elevation: 6,
+    },
+    fabIcon: {
+        color: '#fff',
+        fontSize: 22,
+        fontWeight: '500',
+        marginRight: 8,
+        marginTop: -2,
+    },
+    fabText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: '600',
     },
 });
 

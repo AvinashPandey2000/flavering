@@ -1,7 +1,8 @@
 //===< REACT APIS >===//
 import { NavigationContainer } from '@react-navigation/native';
-import React, { useEffect } from 'react';
-import { View, Text, StatusBar, SafeAreaView } from 'react-native';
+import React from 'react';
+import { StatusBar } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 //===< NAVIGATIONS >===//
 // Using relative path since alias might not be set up
@@ -11,12 +12,15 @@ import RootNavigator from './src/navigation/stack/RootNavigator';
 const App = () => {
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-            <StatusBar barStyle="dark-content" />
+        <SafeAreaProvider>
+            <StatusBar
+                barStyle="light-content"
+                backgroundColor="#00796b"
+            />
             <NavigationContainer>
                 <RootNavigator />
             </NavigationContainer>
-        </SafeAreaView>
+        </SafeAreaProvider>
     );
 }
 
