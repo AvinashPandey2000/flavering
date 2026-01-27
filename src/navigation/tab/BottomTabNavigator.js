@@ -9,6 +9,7 @@ import BookScreen from '../../screens/Book/BookScreen';
 // Modal
 import MoreModal from '../../components/MoreModal';
 import { Images } from '../../assets/images';
+import { COLORS } from '../../config';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,8 +36,8 @@ const BottomTabNavigator = () => {
             <Tab.Navigator
                 screenOptions={{
                     headerShown: false,
-                    tabBarActiveTintColor: '#008ba3', // Example teal color from screenshot
-                    tabBarInactiveTintColor: 'gray',
+                    tabBarActiveTintColor: COLORS.tabActive, // Example teal color from screenshot
+                    tabBarInactiveTintColor: COLORS.tabInactive,
                     tabBarLabelStyle: {
                         fontSize: 13,
                         fontWeight: '600',

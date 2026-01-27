@@ -10,6 +10,7 @@ import {
     StatusBar
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { COLORS } from '../../config';
 
 const QuickBookItem = ({ icon, label, bgColor, iconColor }) => (
     <TouchableOpacity style={styles.quickBookItem}>
@@ -108,7 +109,7 @@ const BookScreen = () => {
 
     return (
         <View style={styles.container}>
-            <StatusBar barStyle="light-content" backgroundColor="#00796b" />
+            <StatusBar barStyle="light-content" backgroundColor={COLORS.primary} />
             <View style={[styles.header, { paddingTop: insets.top + 10 }]}>
                 <Text style={styles.headerTitle}>Appointments</Text>
                 <Text style={styles.headerSubtitle}>Manage your pet care schedule</Text>
@@ -121,24 +122,24 @@ const BookScreen = () => {
             >
                 <View style={[styles.card, styles.quickBookCard]}>
                     <SectionHeader title="Quick Book" action="Browse all" />
-                 
+
 
                     {/* Let's redo the QuickBookRow to match image better */}
                     <View style={styles.quickBookRow}>
                         <View style={styles.quickBookItemContainer}>
-                            <View style={[styles.quickBookCircle, { backgroundColor: '#26a69a' }]}>
+                            <View style={[styles.quickBookCircle, { backgroundColor: COLORS.quickBookVetBg }]}>
                                 <Text style={styles.quickBookEmoji}>🩺</Text>
                             </View>
                             <Text style={styles.quickBookText}>Vet Visit</Text>
                         </View>
                         <View style={styles.quickBookItemContainer}>
-                            <View style={[styles.quickBookCircle, { backgroundColor: '#ffa726' }]}>
+                            <View style={[styles.quickBookCircle, { backgroundColor: COLORS.quickBookGroomingBg }]}>
                                 <Text style={styles.quickBookEmoji}>✂️</Text>
                             </View>
                             <Text style={styles.quickBookText}>Grooming</Text>
                         </View>
                         <View style={styles.quickBookItemContainer}>
-                            <View style={[styles.quickBookCircle, { backgroundColor: '#7e57c2' }]}>
+                            <View style={[styles.quickBookCircle, { backgroundColor: COLORS.quickBookBoardingBg }]}>
                                 <Text style={styles.quickBookEmoji}>🏠</Text>
                             </View>
                             <Text style={styles.quickBookText}>Boarding</Text>
@@ -180,10 +181,10 @@ const BookScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f8f9fa',
+        backgroundColor: COLORS.backgroundAlt,
     },
     header: {
-        backgroundColor: '#00796b',
+        backgroundColor: COLORS.primary,
         paddingHorizontal: 20,
         paddingBottom: 40, // Extended bottom for the curve effect if we had one, but simpler here
         borderBottomLeftRadius: 30,
@@ -192,12 +193,12 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontSize: 28,
         fontWeight: '600',
-        color: '#ffffff',
+        color: COLORS.textOnPrimary,
         marginBottom: 4,
     },
     headerSubtitle: {
         fontSize: 16,
-        color: '#b2dfdb',
+        color: COLORS.textOnPrimaryMuted,
         fontWeight: '400',
     },
     content: {
@@ -209,10 +210,10 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
     },
     card: {
-        backgroundColor: '#ffffff',
+        backgroundColor: COLORS.surface,
         borderRadius: 20,
         padding: 20,
-        shadowColor: '#000',
+        shadowColor: COLORS.shadow,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.05,
         shadowRadius: 10,
@@ -228,11 +229,11 @@ const styles = StyleSheet.create({
     sectionTitle: {
         fontSize: 18,
         fontWeight: '600',
-        color: '#333333',
+        color: COLORS.textSecondary,
     },
     sectionAction: {
         fontSize: 16,
-        color: '#00796b',
+        color: COLORS.primary,
         fontWeight: '600',
     },
     quickBookRow: {
@@ -242,7 +243,7 @@ const styles = StyleSheet.create({
     quickBookItemContainer: {
         alignItems: 'center',
         flex: 1,
-        backgroundColor: '#fcfcfc', // Slightly different bg for item area
+        backgroundColor: COLORS.surfaceSoft, // Slightly different bg for item area
         marginHorizontal: 5,
         paddingVertical: 15,
         borderRadius: 16,
@@ -257,12 +258,12 @@ const styles = StyleSheet.create({
     },
     quickBookEmoji: {
         fontSize: 24,
-        color: '#ffffff',
+        color: COLORS.textOnPrimary,
     },
     quickBookText: {
         fontSize: 14,
         fontWeight: '500',
-        color: '#333333',
+        color: COLORS.textSecondary,
     },
     tabContainer: {
         flexDirection: 'row',
@@ -274,38 +275,38 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         borderRadius: 20,
         borderWidth: 1,
-        borderColor: '#e0e0e0',
-        backgroundColor: '#ffffff',
+        borderColor: COLORS.border,
+        backgroundColor: COLORS.surface,
     },
     activeTabButton: {
-        backgroundColor: '#00796b',
-        borderColor: '#00796b',
+        backgroundColor: COLORS.primary,
+        borderColor: COLORS.primary,
     },
     tabText: {
         fontSize: 14,
         fontWeight: '600',
-        color: '#666666',
+        color: COLORS.textMuted,
     },
     activeTabText: {
-        color: '#ffffff',
+        color: COLORS.textOnPrimary,
     },
     listContainer: {
         gap: 16,
     },
     appointmentCard: {
-        backgroundColor: '#ffffff',
+        backgroundColor: COLORS.surface,
         borderRadius: 20,
         flexDirection: 'row',
         overflow: 'hidden',
         // Shadow
-        shadowColor: '#000',
+        shadowColor: COLORS.shadow,
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.05,
         shadowRadius: 5,
         elevation: 2,
     },
     dateContainer: {
-        backgroundColor: '#fff8e1', // Light yellow bg for date
+        backgroundColor: COLORS.appointmentDateBg, // Light yellow bg for date
         width: 80,
         justifyContent: 'center',
         alignItems: 'center',
@@ -314,19 +315,19 @@ const styles = StyleSheet.create({
     dateMonth: {
         fontSize: 13,
         fontWeight: '600',
-        color: '#00796b',
+        color: COLORS.primary,
         marginBottom: 2,
     },
     dateDay: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#00695c',
+        color: COLORS.primaryDark,
         marginBottom: 2,
     },
     dateYear: {
         fontSize: 13,
         fontWeight: '500',
-        color: '#00796b',
+        color: COLORS.primary,
     },
     appointmentDetails: {
         flex: 1,
@@ -342,23 +343,23 @@ const styles = StyleSheet.create({
     petName: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#1f1f1f',
+        color: COLORS.textPrimary,
         marginBottom: 2,
     },
     typeBadge: {
-        backgroundColor: '#fce4ec',
+        backgroundColor: COLORS.badgeBg,
         paddingHorizontal: 8,
         paddingVertical: 4,
         borderRadius: 8,
     },
     typeText: {
         fontSize: 10,
-        color: '#c2185b',
+        color: COLORS.badgeText,
         fontWeight: '600',
     },
     clinicName: {
         fontSize: 14,
-        color: '#666666',
+        color: COLORS.textMuted,
         marginBottom: 8,
     },
     timeContainer: {
@@ -368,17 +369,17 @@ const styles = StyleSheet.create({
     timeIcon: {
         fontSize: 12,
         marginRight: 4,
-        color: '#757575',
+        color: COLORS.textMutedStrong,
     },
     timeText: {
         fontSize: 13,
-        color: '#757575',
+        color: COLORS.textMutedStrong,
         fontWeight: '500',
     },
     footerText: {
         textAlign: 'center',
         marginTop: 30,
-        color: '#9e9e9e',
+        color: COLORS.textSubtle,
         fontSize: 14,
     }
 });

@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { COLORS } from '../../config';
 
 const MetricCard = ({ iconLabel, iconBg, value, title, action }) => (
     <View style={styles.metricCard}>
@@ -60,21 +61,21 @@ const HomeScreen = () => {
                     <View style={styles.metricsRow}>
                         <MetricCard
                             iconLabel="C"
-                            iconBg="#ffe2cf"
+                            iconBg={COLORS.metricScheduleBg}
                             value="0"
                             title="Schedule"
                             action="Book Now"
                         />
                         <MetricCard
                             iconLabel="V"
-                            iconBg="#e6fbf5"
+                            iconBg={COLORS.metricVaccinesBg}
                             value="0"
                             title="Vaccines Due"
                             action="View Due"
                         />
                         <MetricCard
                             iconLabel="R"
-                            iconBg="#fff1d9"
+                            iconBg={COLORS.metricRemindersBg}
                             value="0"
                             title="Reminders"
                             action="Manage"
@@ -128,7 +129,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
-        backgroundColor: '#f7f8f7',
+        backgroundColor: COLORS.background,
     },
     scroll: {
         flex: 1,
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
         paddingBottom: 24,
     },
     headerCard: {
-        backgroundColor: '#00796b',
+        backgroundColor: COLORS.primary,
         paddingHorizontal: 20,
         paddingBottom: 24,
         borderBottomLeftRadius: 36,
@@ -150,13 +151,13 @@ const styles = StyleSheet.create({
         marginBottom: 18,
     },
     greeting: {
-        color: '#ffffff',
+        color: COLORS.textOnPrimary,
         fontSize: 28,
         fontWeight: '600',
         marginBottom: 4,
     },
     subGreeting: {
-        color: '#d9f3ee',
+        color: COLORS.textOnPrimarySoft,
         fontSize: 16,
         fontWeight: '500',
     },
@@ -164,14 +165,14 @@ const styles = StyleSheet.create({
         width: 48,
         height: 48,
         borderRadius: 32,
-        backgroundColor: '#ffffff',
+        backgroundColor: COLORS.surface,
         alignItems: 'center',
         justifyContent: 'center',
     },
     profileIcon: {
         fontSize: 24,
         fontWeight: '700',
-        color: '#00796b',
+        color: COLORS.primary,
     },
     metricsRow: {
         flexDirection: 'row',
@@ -180,7 +181,7 @@ const styles = StyleSheet.create({
     },
     metricCard: {
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: COLORS.surface,
         borderRadius: 22,
         paddingVertical: 16,
         paddingHorizontal: 10,
@@ -197,23 +198,23 @@ const styles = StyleSheet.create({
     metricIconText: {
         fontSize: 22,
         fontWeight: '700',
-        color: '#2b2b2b',
+        color: COLORS.textPrimaryAlt,
     },
     metricValue: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#2b2b2b',
+        color: COLORS.textPrimaryAlt,
         marginBottom: 2,
     },
     metricTitle: {
         fontSize: 12,
         fontWeight: '500',
-        color: '#666666',
+        color: COLORS.textMuted,
         marginBottom: 8,
         textAlign: 'center',
     },
     metricAction: {
-        color: '#00796b',
+        color: COLORS.primary,
         fontWeight: '500',
         fontSize: 14,
     },
@@ -230,15 +231,15 @@ const styles = StyleSheet.create({
     sectionTitle: {
         fontSize: 18,
         fontWeight: '600',
-        color: '#1f1f1f',
+        color: COLORS.textPrimary,
     },
     sectionAction: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#00796b',
+        color: COLORS.primary,
     },
     petCard: {
-        backgroundColor: '#ffffff',
+        backgroundColor: COLORS.surface,
         borderRadius: 24,
         paddingHorizontal: 16,
         paddingVertical: 18,
@@ -255,7 +256,7 @@ const styles = StyleSheet.create({
         width: 48,
         height: 48,
         borderRadius: 33,
-        backgroundColor: '#fff3e2',
+        backgroundColor: COLORS.petIconBg,
         alignItems: 'center',
         justifyContent: 'center',
         marginRight: 14,
@@ -263,22 +264,22 @@ const styles = StyleSheet.create({
     petIconText: {
         fontSize: 26,
         fontWeight: '800',
-        color: '#a55a00',
+        color: COLORS.petIconText,
     },
     petName: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#1f1f1f',
+        color: COLORS.textPrimary,
         marginBottom: 2,
     },
     petDetails: {
         fontSize: 12,
         fontWeight: '500',
-        color: '#777777',
+        color: COLORS.textMutedAlt,
     },
     chevron: {
         fontSize: 26,
-        color: '#b0b0b0',
+        color: COLORS.iconMuted,
         fontWeight: '600',
         marginLeft: 12,
     },
@@ -293,18 +294,18 @@ const styles = StyleSheet.create({
         height: 40,
         borderRadius: 20,
         borderWidth: 2,
-        borderColor: '#00796b',
+        borderColor: COLORS.reminderBorder,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#e9f7f4',
+        backgroundColor: COLORS.reminderBg,
     },
     reminderIcon: {
-        color: '#00796b',
+        color: COLORS.primary,
         fontSize: 18,
         fontWeight: '800',
     },
     reminderCard: {
-        backgroundColor: '#ffffff',
+        backgroundColor: COLORS.surface,
         borderRadius: 24,
         paddingHorizontal: 18,
         paddingVertical: 26,
@@ -313,24 +314,24 @@ const styles = StyleSheet.create({
     reminderEmptyTitle: {
         fontSize: 25,
         fontWeight: '600',
-        color: '#2b2b2b',
+        color: COLORS.textPrimaryAlt,
         marginBottom: 6,
     },
     reminderEmptyText: {
         fontSize: 14,
         fontWeight: '500',
-        color: '#777777',
+        color: COLORS.textMutedAlt,
         textAlign: 'center',
         marginBottom: 16,
     },
     addReminderButton: {
-        backgroundColor: '#d7f3ec',
+        backgroundColor: COLORS.addReminderBg,
         paddingHorizontal: 28,
         paddingVertical: 12,
         borderRadius: 14,
     },
     addReminderText: {
-        color: '#00796b',
+        color: COLORS.primary,
         fontWeight: '600',
         fontSize: 16,
     },

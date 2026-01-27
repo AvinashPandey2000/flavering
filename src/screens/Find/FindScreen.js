@@ -10,6 +10,7 @@ import {
     FlatList,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { COLORS } from '../../config';
 
 const FilterChip = ({ label, icon, active }) => (
     <TouchableOpacity style={[
@@ -83,7 +84,7 @@ const FindScreen = () => {
                     <TextInput
                         style={styles.searchInput}
                         placeholder="Search vets, groomers, boarders..."
-                        placeholderTextColor="#999"
+                        placeholderTextColor={COLORS.textPlaceholder}
                     />
                 </View>
             </View>
@@ -126,10 +127,10 @@ const FindScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f7f8f7', // Matches Home implementation
+        backgroundColor: COLORS.background, // Matches Home implementation
     },
     header: {
-        backgroundColor: '#00796b',
+        backgroundColor: COLORS.primary,
         paddingHorizontal: 20,
         paddingBottom: 24,
         borderBottomLeftRadius: 32,
@@ -144,13 +145,13 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontSize: 24,
         fontWeight: '700',
-        color: '#fff',
+        color: COLORS.textOnPrimary,
     },
     menuButton: {
         width: 40,
         height: 40,
         borderRadius: 20,
-        backgroundColor: 'rgba(255,255,255,0.2)',
+        backgroundColor: COLORS.menuOverlay,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -161,13 +162,13 @@ const styles = StyleSheet.create({
     menuLine: {
         width: 18,
         height: 2,
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.textOnPrimary,
         borderRadius: 2,
     },
     searchContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.surface,
         borderRadius: 16,
         paddingHorizontal: 16,
         height: 50,
@@ -180,7 +181,7 @@ const styles = StyleSheet.create({
     searchInput: {
         flex: 1,
         fontSize: 15,
-        color: '#333',
+        color: COLORS.textSecondary,
         height: '100%',
     },
     content: {
@@ -197,14 +198,14 @@ const styles = StyleSheet.create({
     filterChip: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.surface,
         paddingHorizontal: 16,
         paddingVertical: 10,
         borderRadius: 25,
         gap: 8,
     },
     filterChipActive: {
-        backgroundColor: '#00796b',
+        backgroundColor: COLORS.primary,
     },
     filterIconContainer: {
         width: 20,
@@ -216,25 +217,25 @@ const styles = StyleSheet.create({
     filterText: {
         fontSize: 14,
         fontWeight: '500',
-        color: '#444',
+        color: COLORS.textSecondaryAlt,
     },
     filterTextActive: {
-        color: '#fff',
+        color: COLORS.textOnPrimary,
         fontWeight: '600',
     },
     resultCount: {
         paddingHorizontal: 20,
         fontSize: 14,
-        color: '#888',
+        color: COLORS.textSubtle,
         marginBottom: 16,
     },
     providerCard: {
         marginHorizontal: 20,
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.surface,
         borderRadius: 24,
         padding: 16,
         flexDirection: 'row',
-        shadowColor: '#000',
+        shadowColor: COLORS.shadow,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.05,
         shadowRadius: 8,
@@ -243,7 +244,7 @@ const styles = StyleSheet.create({
     providerImagePlaceholder: {
         width: 80,
         height: 80,
-        backgroundColor: '#f0f0e0', // Beige tone
+        backgroundColor: COLORS.providerImageBg, // Beige tone
         borderRadius: 16,
         marginRight: 16,
         justifyContent: 'center',
@@ -260,24 +261,24 @@ const styles = StyleSheet.create({
     providerName: {
         fontSize: 15,
         fontWeight: '700',
-        color: '#2b2b2b',
+        color: COLORS.textPrimaryAlt,
         flex: 1,
         marginRight: 8,
     },
     heartIcon: {
         fontSize: 18,
-        color: '#ff4d4f',
+        color: COLORS.heart,
     },
     tagContainer: {
         alignSelf: 'flex-start',
-        backgroundColor: '#e6fbf5',
+        backgroundColor: COLORS.tagBg,
         paddingHorizontal: 10,
         paddingVertical: 4,
         borderRadius: 8,
         marginVertical: 6,
     },
     tagText: {
-        color: '#00796b',
+        color: COLORS.primary,
         fontSize: 11,
         fontWeight: '600',
     },
@@ -292,11 +293,11 @@ const styles = StyleSheet.create({
     addressText: {
         flex: 1,
         fontSize: 12,
-        color: '#888',
+        color: COLORS.textSubtle,
         marginRight: 8,
     },
     callButton: {
-        backgroundColor: '#e9f7f4',
+        backgroundColor: COLORS.callButtonBg,
         width: 32,
         height: 32,
         borderRadius: 10,
@@ -310,27 +311,27 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 30,
         right: 20,
-        backgroundColor: '#00796b',
+        backgroundColor: COLORS.primary,
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 20,
         paddingVertical: 14,
         borderRadius: 18,
-        shadowColor: '#00796b',
+        shadowColor: COLORS.primary,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
         shadowRadius: 8,
         elevation: 6,
     },
     fabIcon: {
-        color: '#fff',
+        color: COLORS.textOnPrimary,
         fontSize: 22,
         fontWeight: '500',
         marginRight: 8,
         marginTop: -2,
     },
     fabText: {
-        color: '#fff',
+        color: COLORS.textOnPrimary,
         fontSize: 16,
         fontWeight: '600',
     },
