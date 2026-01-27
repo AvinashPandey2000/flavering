@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text } from 'react-native';
+import { View, Image } from 'react-native';
 
 // Screens
 import HomeScreen from '../../screens/Home/HomeScreen';
@@ -8,6 +8,7 @@ import FindScreen from '../../screens/Find/FindScreen';
 import BookScreen from '../../screens/Book/BookScreen';
 // Modal
 import MoreModal from '../../components/MoreModal';
+import { Images } from '../../assets/images';
 
 const Tab = createBottomTabNavigator();
 
@@ -16,6 +17,18 @@ const MorePlaceholder = () => <View />;
 
 const BottomTabNavigator = () => {
     const [isMoreModalVisible, setMoreModalVisible] = useState(false);
+
+    const renderTabIcon = (source, color) => (
+        <Image
+            source={source}
+            style={{
+                width: 22,
+                height: 22,
+                tintColor: color,
+                resizeMode: 'contain',
+            }}
+        />
+    );
 
     return (
         <>
@@ -31,7 +44,7 @@ const BottomTabNavigator = () => {
                     component={HomeScreen}
                     options={{
                         tabBarLabel: 'Home',
-                        // Add tabBarIcon here using an icon library
+                        tabBarIcon: ({ color }) => renderTabIcon(Images.home, color),
                     }}
                 />
                 <Tab.Screen
@@ -39,6 +52,7 @@ const BottomTabNavigator = () => {
                     component={FindScreen}
                     options={{
                         tabBarLabel: 'Find',
+                        tabBarIcon: ({ color }) => renderTabIcon(Images.search, color),
                     }}
                 />
                 <Tab.Screen
@@ -46,6 +60,7 @@ const BottomTabNavigator = () => {
                     component={BookScreen}
                     options={{
                         tabBarLabel: 'Book',
+                        tabBarIcon: ({ color }) => renderTabIcon(Images.calendar, color),
                     }}
                 />
                 <Tab.Screen
@@ -61,6 +76,7 @@ const BottomTabNavigator = () => {
                     })}
                     options={{
                         tabBarLabel: 'More',
+                        tabBarIcon: ({ color }) => renderTabIcon(Images.more, color),
                     }}
                 />
             </Tab.Navigator>
