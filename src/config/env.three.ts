@@ -1,17 +1,22 @@
 import { AppConfig } from './config.types';
 
 export const COLORS = {
-  primary: '#1565C0', // Blue for Env Three
-  primaryDark: '#0D47A1',
-  tabActive: '#1565C0',
+
+
+
+
+
+  primary: '#EF6C00', // Orange for Env Two
+  primaryDark: '#E65100',
+  tabActive: '#EF6C00',
   tabInactive: '#666666',
-  background: '#E3F2FD', // Light blue background
+  background: '#FFF3E0', // Light orange background
   backgroundAlt: '#FFFFFF',
   surface: '#FFFFFF',
-  surfaceSoft: '#E1F5FE',
+  surfaceSoft: '#FFF8E1',
   textOnPrimary: '#ffffff',
-  textOnPrimarySoft: '#BBDEFB',
-  textOnPrimaryMuted: '#90CAF9',
+  textOnPrimarySoft: '#FFE0B2',
+  textOnPrimaryMuted: '#FFCC80',
   textPrimary: '#1F1F1F',
   textPrimaryAlt: '#2b2b2b',
   textSecondary: '#333333',
@@ -26,34 +31,34 @@ export const COLORS = {
   shadow: '#000000',
 
   // Specific UI elements
-  buttonPrimary: '#1565C0',
-  buttonSecondary: '#00838F',
+  buttonPrimary: '#EF6C00',
+  buttonSecondary: '#0277BD',
 
   // Service Card Colors
   cardBg: '#FFFFFF',
 
   // Floating Action Button
-  fabBg: '#1565C0',
+  fabBg: '#EF6C00',
 
   // Metric & legacy mappings
-  metricScheduleBg: '#BBDEFB',
-  metricVaccinesBg: '#E3F2FD',
-  metricRemindersBg: '#E1F5FE',
-  petIconBg: '#BBDEFB',
-  petIconText: '#0D47A1',
-  reminderBorder: '#1565C0',
-  reminderBg: '#E3F2FD',
-  addReminderBg: '#BBDEFB',
-  quickBookVetBg: '#1976D2',
-  quickBookGroomingBg: '#2196F3',
-  quickBookBoardingBg: '#42A5F5',
-  appointmentDateBg: '#E1F5FE',
-  badgeBg: '#F3E5F5',
-  badgeText: '#7B1FA2',
+  metricScheduleBg: '#FFE0B2',
+  metricVaccinesBg: '#FFF3E0',
+  metricRemindersBg: '#FFECB3',
+  petIconBg: '#FFE0B2',
+  petIconText: '#E65100',
+  reminderBorder: '#EF6C00',
+  reminderBg: '#FFF3E0',
+  addReminderBg: '#FFE0B2',
+  quickBookVetBg: '#FF9800',
+  quickBookGroomingBg: '#FFB74D',
+  quickBookBoardingBg: '#FFCC80',
+  appointmentDateBg: '#FFF8E1',
+  badgeBg: '#FFEBEE',
+  badgeText: '#C62828',
   providerImageBg: '#F5F5F5',
-  heart: '#C2185B',
-  tagBg: '#E3F2FD',
-  callButtonBg: '#E3F2FD',
+  heart: '#D32F2F',
+  tagBg: '#FFF3E0',
+  callButtonBg: '#FFF3E0',
   menuOverlay: 'rgba(255,255,255,0.2)',
 } as const;
 
@@ -62,4 +67,7 @@ export const threeConfic: AppConfig = {
   API_URL: 'https://api.myapp.com',
   THEME_COLOR: '#1565C0', // Blue for Prod
   DEBUG_MODE: false,
+  
 };
+
+

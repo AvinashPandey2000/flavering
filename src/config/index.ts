@@ -4,7 +4,7 @@ import { threeConfic, COLORS as threeColors } from './env.three';
 import { AppConfig, ThemeColors } from './config.types';
 
 // Options: 'one' | 'two' | 'three'
-const CURRENT_ENV = 'one';
+export const CURRENT_ENV = 'one';
 
 const configs: Record<string, { config: AppConfig; colors: ThemeColors }> = {
   one: { config: oneConfic, colors: oneColors },
