@@ -37,6 +37,10 @@ const BottomTabNavigator = () => {
                     headerShown: false,
                     tabBarActiveTintColor: '#008ba3', // Example teal color from screenshot
                     tabBarInactiveTintColor: 'gray',
+                    tabBarLabelStyle: {
+                        fontSize: 13,
+                        fontWeight: '600',
+                    },
                 }}
             >
                 <Tab.Screen
