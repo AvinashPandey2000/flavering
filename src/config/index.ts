@@ -2,11 +2,18 @@ import { oneConfic } from './env.one';
 import { twoConfic } from './env.two';
 import { threeConfic } from './env.three';
 import { AppConfig } from './config.types';
+import RNConfig from 'react-native-config';
 
-// Options: 'one' | 'two' | 'three'
-const CURRENT_ENV = 'two';
+const CURRENT_ENV = (() => {
+    console.log("RNConfig?>>>>",RNConfig)
+  const value = RNConfig.APP_ENV;
+  if (value === 'one' || value === 'two' || value === 'three') {
+    return value;
+  }
+  return 'two';
+})();
 
-const configs: Record<string, AppConfig> = {
+const configs: Record<'one' | 'two' | 'three', AppConfig> = {
   one: oneConfic,
   two: twoConfic,
   three: threeConfic,
