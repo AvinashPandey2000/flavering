@@ -4,10 +4,19 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "android:one": "cd android && ./gradlew :app:installOneDebug -PreactNativeDevServerPort=8081",
+    "android:two": "cd android && ./gradlew :app:installTwoDebug -PreactNativeDevServerPort=8081",
+    "android:three": "cd android && ./gradlew :app:installThreeDebug -PreactNativeDevServerPort=8081",
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "build:android:one": "cd android && ./gradlew assembleOneRelease",
+    "build:android:two": "cd android && ./gradlew assembleTwoRelease",
+    "build:android:three": "cd android && ./gradlew assembleThreeRelease",
+    "bundle:android:one": "cd android && ./gradlew bundleOneRelease",
+    "bundle:android:two": "cd android && ./gradlew bundleTwoRelease",
+    "bundle:android:three": "cd android && ./gradlew bundleThreeRelease"
   },
   "dependencies": {
     "@react-native/new-app-screen": "0.83.1",

@@ -2,6 +2,17 @@ apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
 
+project.ext.envConfigFiles = [
+    onedebug: ".env.one",
+    onerelease: ".env.one",
+    twodebug: ".env.two",
+    tworelease: ".env.two",
+    threedebug: ".env.three",
+    threerelease: ".env.three",
+]
+
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+
 /**
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
@@ -84,6 +95,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        // Needed when applicationId differs from the manifest/namespace package.
+        resValue "string", "build_config_package", "com.awesomeproject"
     }
     signingConfigs {
         debug {
@@ -91,6 +104,49 @@ android {
             storePassword 'android'
             keyAlias 'androiddebugkey'
             keyPassword 'android'
+        }
+        // Config for App ONE
+        configOne {
+            storeFile file('keystores/one-release.keystore')
+            storePassword 'passwordOne123'
+            keyAlias 'keyOne'
+            keyPassword 'passwordOne123'
+        }
+        // Config for App TWO
+        configTwo {
+            storeFile file('keystores/two-release.keystore')
+            storePassword 'passwordTwo123'
+            keyAlias 'keyTwo'
+            keyPassword 'passwordTwo123'
+        }
+        // Config for App THREE
+        configThree {
+            storeFile file('keystores/three-release.keystore')
+            storePassword 'passwordThree123'
+            keyAlias 'keyThree'
+            keyPassword 'passwordThree123'
+        }
+    }
+    flavorDimensions "default"
+    // 2. PRODUCT FLAVORS (Package name aur Signing Config link yaha hoga)
+    productFlavors {
+        one {
+            dimension "default"
+            applicationId "com.agil.one"
+            resValue "string", "app_name", "Maillardville"
+            signingConfig signingConfigs.configOne // Yaha link kiya One ka keystore
+        }
+        two {
+            dimension "default"
+            applicationId "com.agil.two"
+            resValue "string", "app_name", "veterinary"
+            signingConfig signingConfigs.configTwo // Yaha link kiya Two ka keystore
+        }
+        three {
+            dimension "default"
+            applicationId "com.agil.three"
+            resValue "string", "app_name", "Agil Three"
+            signingConfig signingConfigs.configThree // Yaha link kiya Three ka keystore
         }
     }
     buildTypes {
@@ -100,7 +156,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            // signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
