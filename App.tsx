@@ -1,35 +1,45 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Config from './src/config'; // Direct import from Main Env
+import * as React from 'react';
+import { Text, View } from 'react-native';
+import {
+  createStaticNavigation,
+  useNavigation,
+} from '@react-navigation/native';
+import { Button } from '@react-navigation/elements';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-const App = () => {
-
-  useEffect(() => {
-    // Console mein wahi URL aayega jo tumne main file mein select kiya hai
-    console.log(`Current API: ${Config.API_URL}`); 
-  }, []);
+function HomeScreen() {
+  const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
-
-      <Text style={{ color: Config.THEME_COLOR, fontSize: 20, fontWeight: 'bold' }}>
-        Current Environment: {Config.ENV}
-      </Text>
-      <Text>API: {Config.API_URL}</Text>
-      
-      {Config.DEBUG_MODE && (
-        <Text style={{color: 'red'}}>DEBUG MODE ON</Text>
-      )}
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
+      <Button onPress={() => navigation.navigate('Profile')}>
+        Go to Profile
+      </Button>
     </View>
   );
-};
+}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+function ProfileScreen() {
+  const navigation = useNavigation();
+
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Profile Screen</Text>
+      <Button onPress={() => navigation.navigate('Home')}>Go to Home</Button>
+    </View>
+  );
+}
+
+const MyTabs = createBottomTabNavigator({
+  screens: {
+    Home: HomeScreen,
+    Profile: ProfileScreen,
   },
 });
 
-export default App;
+const Navigation = createStaticNavigation(MyTabs);
+
+export default function App() {
+  return <Navigation />;
+}
