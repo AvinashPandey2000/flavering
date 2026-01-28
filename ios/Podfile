@@ -15,6 +15,16 @@ if linkage != nil
 end
 
 target 'AwesomeProject' do
+  project 'AwesomeProject', {
+    'Debug' => :debug,
+    'Release' => :release,
+    'Debug.One' => :debug,
+    'Release.One' => :release,
+    'Debug.Two' => :debug,
+    'Release.Two' => :release,
+    'Debug.Three' => :debug,
+    'Release.Three' => :release,
+  }
   config = use_native_modules!
 
   use_react_native!(

@@ -16,7 +16,10 @@
     "build:android:three": "cd android && ./gradlew assembleThreeRelease",
     "bundle:android:one": "cd android && ./gradlew bundleOneRelease",
     "bundle:android:two": "cd android && ./gradlew bundleTwoRelease",
-    "bundle:android:three": "cd android && ./gradlew bundleThreeRelease"
+    "bundle:android:three": "cd android && ./gradlew bundleThreeRelease",
+    "ios:one": "react-native run-ios --scheme One",
+    "ios:two": "react-native run-ios --scheme Two",
+    "ios:three": "react-native run-ios --scheme Three"
   },
   "dependencies": {
     "@react-native/new-app-screen": "0.83.1",
