@@ -9,6 +9,8 @@ const logos = {
 export const Images = {
       home: require('./home.png'),
       calendar: require('./calendar.png'),
+      calendarTwo: require('./calendarTwp.png'),
+      findingTwo: require('./findingTwo.png'),
       search: require('./search.png'),
       more: require('./more.png'),
       maillardVilleSplash: require('./maillardVilleSplash.png'),

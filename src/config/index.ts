@@ -6,6 +6,7 @@ import { AppConfig, ThemeColors } from './config.types';
 
 // Options: 'one' | 'two' | 'three'
 export const CURRENT_ENV = RNConfig.APP_FLAVOR || 'one';
+console.log("CURRENT_ENV>>>",RNConfig)
 
 const configs: Record<string, { config: AppConfig; colors: ThemeColors }> = {
   one: { config: oneConfic, colors: oneColors },

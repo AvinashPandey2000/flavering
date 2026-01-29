@@ -9,7 +9,7 @@ import BookScreen from '../../screens/Book/BookScreen';
 // Modal
 import MoreModal from '../../components/MoreModal';
 import { Images } from '../../assets/images';
-import { COLORS } from '../../config';
+import { COLORS, CURRENT_ENV } from '../../config';
 
 const Tab = createBottomTabNavigator();
 
@@ -30,6 +30,9 @@ const BottomTabNavigator = () => {
             }}
         />
     );
+
+    const findIcon = CURRENT_ENV === 'two' ? Images.findingTwo : Images.search;
+    const bookIcon = CURRENT_ENV === 'two' ? Images.calendarTwo : Images.calendar;
 
     return (
         <>
@@ -57,7 +60,7 @@ const BottomTabNavigator = () => {
                     component={FindScreen}
                     options={{
                         tabBarLabel: 'Find',
-                        tabBarIcon: ({ color }) => renderTabIcon(Images.search, color),
+                        tabBarIcon: ({ color }) => renderTabIcon(findIcon, color),
                     }}
                 />
                 <Tab.Screen
@@ -65,7 +68,7 @@ const BottomTabNavigator = () => {
                     component={BookScreen}
                     options={{
                         tabBarLabel: 'Book',
-                        tabBarIcon: ({ color }) => renderTabIcon(Images.calendar, color),
+                        tabBarIcon: ({ color }) => renderTabIcon(bookIcon, color),
                     }}
                 />
                 <Tab.Screen
